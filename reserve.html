@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- style sheet links -->
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- cdn to jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- cdn to complete css bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- cdn to complete javascript bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+
+    <title>Place Reservations</title>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron header">
+            <h1 class="display-4">Hot Restaurant!</h1>
+            <p class="lead"><strong>Book your reservation</strong></p>
+            <hr class="my-4">
+
+            <a class="btn btn-primary btn-lg" href="./tables" role="button">View Tables</a>
+            <a class="btn btn-primary btn-lg" href="./reserve" role="button">Make Reservation</a>
+
+        </div>
+        <!-- Content here -->
+    </div>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+
+            <div class="form-group">
+                <label for="formGroupExampleInput">Phone</label>
+                <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Email</label>
+                <input type="text" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Unique ID</label>
+                <input type="text" class="form-control" id="uniqueId">
+            </div>
+
+
+        </form>
+        <input class="btn btn-primary add-res" type="submit" value="Submit">
+
+        <!-- Content here -->
+    </div>
+
+    <script type="text/javascript">
+        //code to add a reservation
+        $(".add-res").on("click", function (event) {
+            event.preventDefault();
+            var newReservation = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueId: $("#uniqueId").val().trim()
+            };
+
+            //post data to server 
+            $.post("/api/reserve", newReservation)
+                .then(function (data) {
+                    console.log("reserve.html", data);
+                    alert("Your Reservation was Placed!");
+                });
+        });
+
+    </script>
+
+</body>
+
+</html>
