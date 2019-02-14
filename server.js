@@ -62,6 +62,7 @@ var waitList = [
 // Routes
 
 // Home - how the user acces the home (request and response) info client reqeust is put in params 
+//route to access file
 app.get('/', function (req, res) {
     // res.send("welcome to the home page");
     res.sendFile(path.join(__dirname, "home.html"));
@@ -80,10 +81,11 @@ app.get('/tables', function (req, res) {
 });
 
 
-//page not found
-app.get('*', function (req, res) {
-    res.send(404);
-});
+
+//shows tables
+app.get("/show-reservations", function (req, res) {
+    res.send(reservations);
+})
 
 
 //Waitlist - display waitlist
@@ -105,7 +107,7 @@ app.get("/api/waitList/:waitlist", function (req, res) {
 })
 
 
-//Place a new reservation
+//Place a new reservation //route on server
 app.post("/api/reservations", function (req, res) {
     var newreservation = req.body;
 
@@ -113,7 +115,12 @@ app.post("/api/reservations", function (req, res) {
 
     reservations.push(newreservation);
 
-    res.json(newreservation);
+    res.json(reservations);
+});
+
+//page not found
+app.get('*', function (req, res) {
+    res.send(404);
 });
 
 

@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- style sheet links -->
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+
     <!-- cdn to jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- cdn to complete css bootstrap -->
@@ -76,9 +74,9 @@
             };
 
             //post data to server 
-            $.post("/api/reserve", newReservation)
-                .then(function (data) {
-                    console.log("reserve.html", data);
+            $.post("/api/reservations", newReservation)
+                .then(function (reservationswithNewOneAdded) {
+                    console.log(reservationswithNewOneAdded);
                     alert("Your Reservation was Placed!");
                 });
         });
